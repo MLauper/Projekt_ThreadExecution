@@ -1,21 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Marco on 20.05.2014.
  */
 public class PrimeCalculator extends Thread {
+    private boolean LOG = false;
     String name;
     int curNum;
+    List<Integer> primes = new ArrayList<Integer>();
 
-    public PrimeCalculator(String name) {
+    public PrimeCalculator(String name, List<Integer> primes) {
         this.name = name;
+        this.primes = primes;
         this.start();
     }
 
     @Override
     public void run() {
         log("Started Execution");
-        curNum = 1000000000;
+        curNum = 1;
         for (;!(this.isInterrupted());curNum++){
-            if(isPrime(curNum)) log("PRIME: " + curNum);
+            if(isPrime(curNum)) primes.add(curNum); //log("PRIME: " + curNum);
         }
     }
 
@@ -26,6 +32,6 @@ public class PrimeCalculator extends Thread {
     }
 
     private void log(String message){
-        System.out.println("Thread " + name + ": " + message);
+        if(LOG) System.out.println("Thread " + name + ": " + message);
     }
 }
