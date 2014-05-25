@@ -8,11 +8,14 @@ public class PrimeCalculator extends Thread {
     private boolean LOG = false;
     String name;
     int curNum;
+    int maxNum;
+    Object lock;
     List<Integer> primes = new ArrayList<Integer>();
 
-    public PrimeCalculator(String name, List<Integer> primes) {
+    public PrimeCalculator(String name, List<Integer> primes, Object lock) {
         this.name = name;
         this.primes = primes;
+        this.lock = lock;
         this.start();
     }
 
@@ -20,14 +23,16 @@ public class PrimeCalculator extends Thread {
     public void run() {
         log("Started Execution");
         curNum = 1;
-        for (;!(this.isInterrupted());curNum++){
+        maxNum = 1000;
+        for (;!(this.isInterrupted()) && curNum<=maxNum ;curNum++){
             if(isPrime(curNum)) primes.add(curNum); //log("PRIME: " + curNum);
         }
     }
 
     public static boolean isPrime(int no){
-        if (no < 2) return false;
-        for (int i = 2; i < no; i++){ if (no % i == 0) return false; }
+//        if (no < 2) return false;
+//        for (int i = 2; i < no; i++){ if (no % i == 0) return false; }
+//        return true;
         return true;
     }
 
