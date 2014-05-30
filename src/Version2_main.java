@@ -12,9 +12,9 @@ public class Version2_main {
         // DONE: Each thread must store the prime number it calculates in a local array list and when it terminates, it should return this list to the caller (use Callable object).
         // DONE: At program end, all partial lists (one for each thread) must be stored together in an array list which must have the same content as the array list built in the main thread. Check this!
 
-        int numOfThreads = 1;
-        int minPrime = 0;
-        int maxPrime = 50000;
+        final int numOfThreads = 1;
+        final int minPrime = 0;
+        final int maxPrime = 50000;
 
         long startThreadProc, stopThreadProc, startMainProc, stopMainProc;
 
